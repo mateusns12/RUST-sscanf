@@ -5,7 +5,7 @@
 
 mod scan{
     //#[macro_export]
-    pub macro splitter( $string:expr, $sep:expr) {
+    macro splitter( $string:expr, $sep:expr) {
         {
             let mut iter:Vec<&str> = $string.split($sep).collect();
             iter
@@ -36,8 +36,8 @@ fn main() {
     println!("{} {} {} {}",a,b,e,d);
 
     let buffer = "00:00:03,400 --> 00:00:06,177";
-    let a :u8;   let b :u8;   let c :u8;   let d :i32;   let e :String;
-    let f:u8; let g:u8; let h:u8; let i:i32;
+    let a:u8;   let b:u8;   let c:u8;   let d:i32;  let e:String;
+    let f:u8;   let g:u8;   let h:u8;   let i:i32;
     scan::sscanf!(buffer,sep,[u8,u8,u8,i32,String,u8,u8,u8,i32],a,b,c,d,e,f,g,h,i);
-    println!("{:02}:{:02}:{:02},{:03} --> {:02}:{:02}:{:02},{:03}",a,b,c,d,f,g,h,i);
+    println!("{:02}:{:02}:{:02},{:03} {} {:02}:{:02}:{:02},{:03}",a,b,c,d,e,f,g,h,i);
 }
