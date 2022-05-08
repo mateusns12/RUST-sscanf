@@ -7,7 +7,7 @@ Rust implementation of C function sscanf. It is not entirely equal, as it receiv
 
 >Not using any extern crates, but unstable feature [**declarative macros 2.0**](https://github.com/rust-lang/rust/issues/39412). 
 
->Using macro_rules! works fine and will compile on stable. 
+>Using macro_rules! works fine and will compile on stable.
 
 # Usage
 
@@ -34,3 +34,6 @@ Result
 - Using **nightly-x86_64-unknown-linux-gnu**.
 - Using Macro 2.0 instead of macro_rules! , as it seems to be getting deprecated, but works in both situations.
 - Using #![feature(decl_macro)]
+
+# Known Issue
+So far the string variable has to be of the type String, since the macro cant receive a &str as argument, otherwise it would expand into invalid code. The problem with using String, is that is creates a copy of the parsed &str in the buffer. Using &str would be ideal performance wise. A better implementation has been discussed in this [topic](https://stackoverflow.com/questions/72155111/attempt-to-implement-sscanf-in-rust-failing-when-passing-str-as-argument), adressing the problem with functions as well.
